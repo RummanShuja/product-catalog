@@ -2,6 +2,12 @@
 
 A clean, responsive product catalog built with **React, TypeScript, and Chakra UI**. Browse products, explore their details, find items using search and filters, and share feedback through a simple form.
 
+## Live Demo
+
+**[Open Everyday Product Catalog](https://product-catalog-six-phi.vercel.app/)**
+
+Browse the deployed application on desktop or mobile.
+
 ## Features
 
 - **Product catalog** — Browse products in a responsive card grid.
@@ -115,6 +121,8 @@ src/
   App.tsx                     Routes
   main.tsx                    Application providers and entry point
   index.css                   Global and navigation styles
+
+vercel.json                    Vercel routing configuration
 ```
 
 ## State and Data Flow
@@ -143,4 +151,26 @@ Saved entries are available in the same browser profile and site origin. Clearin
 
 ## Deployment
 
-Deploy the generated `dist/` directory to a static hosting service. Because the app uses `BrowserRouter`, configure the host to serve `index.html` for frontend routes such as `/products/1` so direct visits and refreshes work correctly.
+The application is deployed on **Vercel** from its GitHub repository.
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | Vite |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Production branch | `main` |
+
+The root-level `vercel.json` configures the fallback for React Router routes:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+This serves the app for direct visits and refreshes on routes such as `/products/1`. Updates pushed to the connected production branch trigger a new deployment.
